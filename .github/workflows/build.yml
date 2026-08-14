@@ -32,3 +32,27 @@ jobs:
       - name: Validate rules.json
         run: |
           python3 -c "import json; json.load(open('OpenScroll/Resources/rules.json')); print('rules.json is valid JSON')"
+
+      # Device build for AltStore sideloading — unsigned .ipa you sign yourself
+      # with your free Apple ID via AltServer on Windows.
+      - name: Build unsigned device .ipa (for AltStore)
+        if: github.event_name != 'pull_request'
+        run: |
+          xcodebuild \
+            -project OpenScroll.xcodeproj \
+            -scheme OpenScroll \
+            -destination 'generic/platform=iOS' \
+            -configuration Release \
+            CODE_SIGNING_ALLOWED=NO \
+            -derivedDataPath DerivedData \
+            build
+          mkdir -p Payload
+          cp -r "DerivedData/Build/Products/Release-iphoneos/OpenScroll.app" Payload/
+          zip -r OpenScroll.ipa Payload
+
+      - name: Upload unsigned .ipa
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenScroll-unsigned-ipa
+          path: OpenScroll.ipa
