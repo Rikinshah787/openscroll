@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen
+
+      - name: Build (unsigned, simulator)
+        run: |
+          xcodebuild \
+            -project OpenScroll.xcodeproj \
+            -scheme OpenScroll \
+            -destination 'generic/platform=iOS Simulator' \
+            -configuration Debug \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Validate rules.json
+        run: |
+          python3 -c "import json; json.load(open('OpenScroll/Resources/rules.json')); print('rules.json is valid JSON')"
