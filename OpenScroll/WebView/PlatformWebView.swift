@@ -67,7 +67,7 @@ struct PlatformWebView: UIViewRepresentable {
 
     func updateUIView(_ uiView: WKWebView, context: Context) {
         // Rules update live: re-inject when a newer rules.json arrives.
-        if context.coordinator.rules !== rules {
+        if context.coordinator.rules != rules {
             context.coordinator.rules = rules
             uiView.configuration.userContentController.removeAllUserScripts()
             if let rules {
