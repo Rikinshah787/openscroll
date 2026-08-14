@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "platforms": {
+    "instagram": {
+      "hideSelectors": [
+        "a[href^=\"/reels\"]",
+        "a[href=\"/explore/\"]",
+        "article:has(a[href^=\"/reels/\"])",
+        "li:has(a[href^=\"/reels\"])",
+        "div:has(> a[href=\"/explore/\"])"
+      ],
+      "blockedPathPrefixes": ["/reels", "/explore"],
+      "allowedHosts": ["instagram.com", "cdninstagram.com", "fbcdn.net"],
+      "fallbackURLString": "https://www.instagram.com/"
+    },
+    "youtube": {
+      "hideSelectors": [
+        "ytm-reel-shelf-renderer",
+        "ytd-reel-shelf-renderer",
+        "ytm-shorts-lockup-view-model",
+        "ytd-rich-shelf-renderer[is-shorts]",
+        "a[href^=\"/shorts\"]",
+        "ytm-pivot-bar-item-renderer:has(a[href^=\"/shorts\"])",
+        ".ytShortsVideoTitleViewModel"
+      ],
+      "blockedPathPrefixes": ["/shorts"],
+      "allowedHosts": ["youtube.com", "m.youtube.com", "googlevideo.com", "ytimg.com", "google.com"],
+      "fallbackURLString": "https://m.youtube.com/"
+    },
+    "reddit": {
+      "hideSelectors": [
+        "shreddit-post[promoted]",
+        "div[data-promoted=\"true\"]",
+        "faceplate-tracker[noun=\"popular\"]",
+        "a[href=\"/r/popular/\"]"
+      ],
+      "blockedPathPrefixes": [],
+      "allowedHosts": ["reddit.com", "old.reddit.com", "redd.it", "redditstatic.com", "redditmedia.com"],
+      "fallbackURLString": "https://www.reddit.com/"
+    },
+    "tiktok": {
+      "hideSelectors": [
+        "a[href=\"/foryou\"]",
+        "[data-e2e=\"recommend-list-item-container\"]"
+      ],
+      "blockedPathPrefixes": ["/foryou", "/fyp", "/discover"],
+      "allowedHosts": ["tiktok.com", "tiktokcdn.com", "tiktokv.com"],
+      "fallbackURLString": "https://www.tiktok.com/following"
+    },
+    "facebook": {
+      "hideSelectors": [
+        "a[href*=\"/reel\"]",
+        "a[href=\"/watch/\"]",
+        "div[data-pagelet*=\"Reels\"]",
+        "div[data-pagelet*=\"Stories\"]"
+      ],
+      "blockedPathPrefixes": ["/reel", "/watch"],
+      "allowedHosts": ["facebook.com", "m.facebook.com", "fbcdn.net", "fb.com"],
+      "fallbackURLString": "https://m.facebook.com/"
+    },
+    "x": {
+      "hideSelectors": [
+        "a[href=\"/explore\"]",
+        "div[data-testid=\"trend\"]",
+        "section:has(div[data-testid=\"trend\"])",
+        "article:has(span:has(> svg[data-testid=\"icon-verified\"])) ~ div"
+      ],
+      "blockedPathPrefixes": ["/explore"],
+      "allowedHosts": ["x.com", "twitter.com", "twimg.com"],
+      "fallbackURLString": "https://x.com/home"
+    }
+  }
+}
