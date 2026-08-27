@@ -56,3 +56,4 @@ The most valuable contributions are **selector fixes** — social sites change t
 ## License
 
 MIT — do whatever you want with it. That's the point.
+"# Appleapp-afterscoll" 
